@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    .container-tree {
+        height: 100vh;
+        width: 300px;
+    
+        display: flex;
+        flex-direction: column;
+    
+        border: 1px solid rgb(175, 216, 218);
+        
+    
+        overflow: auto;
+    
+        .header{
+            height: 40px;
+    
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 5px;
+                
+            background-color: rgb(175, 216, 218);
+    
+            
+            .custom-file-upload {
+                height: 40px;
+                width: 100px;
+    
+                background-color: dodgerblue;
+                border-radius: 3px;
+                
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+    
+                cursor: pointer;
+    
+                font-size: 16px;
+                color: white;
+    
+                &:hover {
+                    background-color: rgb(26, 127, 228);
+                }
+            }
+            .input {
+                display: none;
+            }
+    
+        }
+    }
+
+    .browser{
+        width: 80vw;
+
+        padding-top: 50px;
+
+        background-color: rgb(209, 220, 241);
+        border-left: 2px solid rgb(90, 140, 233, 0.2);
+
+        .image {
+            width: 100%;
+        }
+
+        .text {
+            width: 80%;
+            
+            background-color: white;
+
+            margin-left: 10%;
+            
+            white-space: pre-wrap;
+           
+        }
+    }
+}

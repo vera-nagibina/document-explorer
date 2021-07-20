@@ -15,7 +15,7 @@ export class TreeSelectionComponent implements OnInit {
 
 
 
-  pictures: TreeNode[] = [
+  files: TreeNode[] = [
     {
       label: 'Documents',
       data: 'Documents Folder',
@@ -48,15 +48,13 @@ imageUrl: string = '';
 text: string = '';
 docType: boolean = false;
 imageType: boolean = false;
+editing: boolean = false;
 
 
   constructor() { }
 
   ngOnInit(): void {
-
-    
-    
-    
+       
   }
   uploadFiles(event: any) {
     const files = event.target.files;
@@ -79,18 +77,25 @@ imageType: boolean = false;
       else file.icon = 'pi pi-image';
     
       this.selectedFile.children?.push(file);
+      this.selectedFile.parent?.children?.push(file);
       
     }
     
   }
 
   selectFiles() {
-    if (this.selectedFile.label === "Documents") {
+    if (this.selectedFile.label === 'Documents' || this.selectedFile.icon === 'pi pi-file') {
       this.type = '.txt';
     }
-    else {
+    else if (this.selectedFile.label === 'Pictures' || this.selectedFile.icon === 'pi pi-image') {
       this.type = 'image/jpeg, image/png';
     }
+    else if (this.selectedFile.label === 'Graphics' || this.selectedFile.icon === 'pi pi-image') {
+      this.type = 'image/jpeg, image/png';
+    }
+
+    
+
     if (this.selectedFile.icon === 'pi pi-image') {
       this.imageType = true;
       const reader = new FileReader();
@@ -104,6 +109,7 @@ imageType: boolean = false;
 
     if (this.selectedFile.icon === 'pi pi-file') {
       this.docType = true;
+      
       const reader = new FileReader();
       reader.onload = () => {
         this.text = reader.result + '';
@@ -111,10 +117,29 @@ imageType: boolean = false;
       reader.readAsText(this.selectedFile.data);
     }
     else this.docType = false;
+   
+  }
 
+  deleteFiles() {
+
+    
+      for (let i = 0; i < this.files.length; i++) {
+        let index = this.files[i].children?.findIndex(item => item.label === this.selectedFile.label);
+        if (index != undefined && index > -1) {
+          this.files[i].children?.splice(index,1);
+        }
+      }
+
+      
+         
+        
+      
+      
     
     
   }
+
+  
   
  
 }

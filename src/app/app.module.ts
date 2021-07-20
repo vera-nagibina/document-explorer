@@ -6,13 +6,15 @@ import {TreeModule} from 'primeng/tree';
 import { TreeSelectionComponent } from './tree-selection/tree-selection.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FileUploadModule} from 'primeng/fileupload';
-
-
+import {EditorModule} from 'primeng/editor';
+import { FormsModule } from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TreeSelectionComponent
+    TreeSelectionComponent,
+    
     
     
   ],
@@ -20,7 +22,10 @@ import {FileUploadModule} from 'primeng/fileupload';
     BrowserModule,
     TreeModule,
     HttpClientModule,
-    FileUploadModule
+    FileUploadModule,
+    EditorModule,
+    FormsModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

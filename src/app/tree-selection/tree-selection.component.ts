@@ -1,7 +1,7 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 
 import {TreeNode} from 'primeng/api';
+import { TreeService } from './tree.service';
 
 
 
@@ -13,47 +13,22 @@ import {TreeNode} from 'primeng/api';
 })
 export class TreeSelectionComponent implements OnInit {
 
+  files: TreeNode[] = [];
+  selectedFile: TreeNode = {};
+  uploadedFiles: any[] = [];
+  type: string = '';
+  imageUrl: string = '';
+  text: string = '';
+  docType: boolean = false;
+  imageType: boolean = false;
+  editing: boolean = false;
 
 
-  files: TreeNode[] = [
-    {
-      label: 'Documents',
-      data: 'Documents Folder',
-      expandedIcon: 'pi pi-folder-open',
-      collapsedIcon: 'pi pi-folder',
-      children: []
-  },
-     {
-        label: 'Pictures',
-        data: 'Pictures Folder',
-        expandedIcon: 'pi pi-folder-open',
-        collapsedIcon: 'pi pi-folder',
-        children: []
-    },
-    
-  {
-    label: 'Graphics',
-    data: 'Documents Folder',
-    expandedIcon: 'pi pi-folder-open',
-    collapsedIcon: 'pi pi-folder',
-    children: []
-}
-  ];
-
-
-selectedFile: TreeNode = {};
-uploadedFiles: any[] = [];
-type: string = '';
-imageUrl: string = '';
-text: string = '';
-docType: boolean = false;
-imageType: boolean = false;
-editing: boolean = false;
-
-
-  constructor() { }
+  constructor(private treeService: TreeService) { }
 
   ngOnInit(): void {
+
+    this.treeService.getData().subscribe((data) => this.files = data as TreeNode[]);
        
   }
   uploadFiles(event: any) {

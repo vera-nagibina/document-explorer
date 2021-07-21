@@ -1,0 +1,25 @@
+
+   
+    [
+        {
+            "label": "Documents",
+            "data": "Documents Folder",
+            "expandedIcon": "pi pi-folder-open",
+            "collapsedIcon": "pi pi-folder",
+            "children": []
+        },
+        {
+            "label": "Pictures",
+            "data": "Pictures Folder",
+            "expandedIcon": "pi pi-folder-open",
+            "collapsedIcon": "pi pi-folder",
+            "children": []
+        },
+        {
+            "label": "Graphics",
+            "data": "Graphics Folder",
+            "expandedIcon": "pi pi-folder-open",
+            "collapsedIcon": "pi pi-folder",
+            "children": []
+        }
+    ]

@@ -3,20 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {TreeModule} from 'primeng/tree';
-import { TreeSelectionComponent } from './tree-selection/tree-selection.component';
+import {TreeSelectionComponent} from './tree-selection/tree-selection.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FileUploadModule} from 'primeng/fileupload';
 import {EditorModule} from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
+import {TreeService} from './tree-selection/tree.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TreeSelectionComponent,
-    
-    
-    
+    TreeSelectionComponent   
   ],
   imports: [
     BrowserModule,
@@ -27,7 +25,7 @@ import {ButtonModule} from 'primeng/button';
     FormsModule,
     ButtonModule
   ],
-  providers: [],
+  providers: [TreeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

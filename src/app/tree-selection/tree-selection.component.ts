@@ -22,7 +22,8 @@ export class TreeSelectionComponent implements OnInit {
   docType: boolean = false;
   imageType: boolean = false;
   editing: boolean = false;
-
+  isDisabled: boolean = false;
+  
 
   constructor(private treeService: TreeService) { }
 
@@ -38,8 +39,7 @@ export class TreeSelectionComponent implements OnInit {
       const file = {
         label: '',
         icon: '',
-        data: {} 
-        
+        data: {}     
               
       }
       file.label = files[i].name;
@@ -61,13 +61,17 @@ export class TreeSelectionComponent implements OnInit {
   selectFiles() {
     if (this.selectedFile.label === 'Documents' || this.selectedFile.icon === 'pi pi-file') {
       this.type = '.txt';
+      this.isDisabled = true;
     }
     else if (this.selectedFile.label === 'Pictures' || this.selectedFile.icon === 'pi pi-image') {
       this.type = 'image/jpeg, image/png';
+      this.isDisabled = true;
     }
     else if (this.selectedFile.label === 'Graphics' || this.selectedFile.icon === 'pi pi-image') {
       this.type = 'image/jpeg, image/png';
+      this.isDisabled = true;
     }
+    else this.isDisabled = false;
 
     
 

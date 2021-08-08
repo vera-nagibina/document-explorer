@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import {TreeModule} from 'primeng/tree';
 import {TreeSelectionComponent} from './tree-selection/tree-selection.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FileUploadModule} from 'primeng/fileupload';
 import {EditorModule} from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {TreeService} from './tree-selection/tree.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MenubarModule} from 'primeng/menubar';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +21,12 @@ import {TreeService} from './tree-selection/tree.service';
   imports: [
     BrowserModule,
     TreeModule,
-    HttpClientModule,
-    FileUploadModule,
+    HttpClientModule,    
     EditorModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    BrowserAnimationsModule,
+    MenubarModule    
   ],
   providers: [TreeService],
   bootstrap: [AppComponent]

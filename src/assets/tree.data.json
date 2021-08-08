@@ -1,5 +1,3 @@
-
-   
     [
         {
             "label": "Documents",
@@ -17,9 +15,9 @@
         },
         {
             "label": "Graphics",
-            "data": "Graphics Folder",
+            "data": "Pictures Folder",
             "expandedIcon": "pi pi-folder-open",
             "collapsedIcon": "pi pi-folder",
             "children": []
-        }
+        }           
     ]

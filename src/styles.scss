@@ -120,7 +120,7 @@ html {
   .p-button {
     color: #ffffff;
     background: var(--primary-color-button);
-    border: 1px solid #007bff;
+    border: 1px solid var(--primary-color-button);
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;

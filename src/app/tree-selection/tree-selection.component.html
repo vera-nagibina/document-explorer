@@ -1,21 +1,16 @@
 <div class="container">
     <div class="container-tree">
         <div class="header">
-            
-            <div *ngIf = "isDisabled" class="buttons">
-                <button pButton type="button">
-                       <label for="file-upload" class="custom-file-upload">Add</label>
-                       <input type="file" id = "file-upload" (change)="uploadFiles($event)" 
-                              multiple class="form-control" class = "input"  accept={{type}}>     
 
-
-                </button>
-                
-                <button pButton type="button" label="Delete" (click)="deleteFiles()"></button>
-            </div>
-                       
+       <button pButton type="button">
+                <label for="file-upload" class="custom-file-upload" class="pi pi-plus"> New </label>
+                <input type="file" id = "file-upload" (change)="uploadFiles($event)" 
+                       multiple class="form-control" class = "input"  accept={{type}}>   
+            </button>
+  
+            <button pButton type="button" label="Delete" icon = "pi pi-trash"  (click)="deleteFiles()"></button>
         </div>
-        
+      
         <p-tree [value]="files" selectionMode="single" 
                 [(selection)]="selectedFile" (click)="selectFiles()"></p-tree>
     </div>
@@ -26,15 +21,9 @@
 
         <div *ngIf = "imageType">
             <img [src]="imageUrl" class="image">
-        </div>
-        
-        
-        
-        
+        </div>     
 
     </div>
-    
-
 </div>
 
 

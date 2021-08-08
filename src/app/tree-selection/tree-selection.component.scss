@@ -5,14 +5,11 @@
     
     .container-tree {
         height: 100vh;
-        width: 300px;
+        width: 20rem;
     
         display: flex;
         flex-direction: column;
-    
-        border: 1px solid rgb(175, 216, 218, 0.5);
-        
-    
+
         overflow: auto;
     
         .header{
@@ -24,50 +21,38 @@
             gap: 5px;
                 
             background-color: var(--primary-color-header);
+            border: 1px solid rgb(175, 216, 218, 0.3);
 
             .buttons{
                 display: flex;
                 flex-direction: row;
                 gap: 2px;
+                
             }
     
             
             .custom-file-upload {
                 height: 40px;
                 width: 50px;
-    
-                
-                
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-    
-                cursor: pointer;
-    
-                
-                
-    
-                
+ 
+                cursor: pointer;              
+              
             }
-
             
-
-            .input {
-                display: none;
-            }
-    
+  
         }
+        .input {
+            display: none;
+            
+        }
+       
     }
-
+ 
     .browser{
         width: 100vw;
 
         padding: 1% 10%;
-
-        
-
-        
+ 
         border-left: 1px solid rgb(90, 140, 233, 0.2);
 
         .image {

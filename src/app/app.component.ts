@@ -9,7 +9,7 @@ import { TreeService } from './tree-selection/tree.service';
 })
 export class AppComponent implements OnInit {
   title = 'document-explorer';
-  isDark: boolean = false;
+  
   
 
 
@@ -17,16 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {   
 
-    if (localStorage.getItem('theme') === 'isDark') {
-      this.isDark = true; 
-      this.treeService.changeTheme(this.isDark);          
-    }
+    
 
   }
-  
-  onChange() {
-
-    this.isDark = !this.isDark;
-    localStorage.setItem('theme', this.treeService.changeTheme(this.isDark));    
-  }
-}
+} 

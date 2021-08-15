@@ -1,18 +1,11 @@
+<p-menubar [model]="items">
+    <p-button label = "Change Theme" (click) = "onChange()"></p-button>
+</p-menubar>
 <div class="container">
     <div class="container-tree">
-        <div class="header">
-
-       <button pButton type="button">
-                <label for="file-upload" class="custom-file-upload" class="pi pi-plus"> New </label>
-                <input type="file" id = "file-upload" (change)="uploadFiles($event)" 
-                       multiple class="form-control" class = "input"  accept={{type}}>   
-            </button>
-  
-            <button pButton type="button" label="Delete" icon = "pi pi-trash"  (click)="deleteFiles()"></button>
-        </div>
-      
         <p-tree [value]="files" selectionMode="single" 
-                [(selection)]="selectedFile" (click)="selectFiles()"></p-tree>
+                [(selection)]="selectedFile" (click)="selectFiles()">
+        </p-tree>
     </div>
     <div class="browser">
         <div *ngIf = "docType">

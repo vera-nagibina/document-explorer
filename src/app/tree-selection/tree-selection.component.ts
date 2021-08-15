@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {TreeNode} from 'primeng/api';
 import { TreeService } from './tree.service';
+import {MenuItem} from 'primeng/api';
 
 @Component({
   selector: 'app-tree-selection',
@@ -14,27 +15,69 @@ export class TreeSelectionComponent implements OnInit {
 
   files: TreeNode[] = [];
   selectedFile: TreeNode = {};
-  type: string = '';
   imageUrl: string = '';
   text: string = '';
   docType: boolean = false;
   imageType: boolean = false;
-  editing: boolean = false;
-     
+  items: MenuItem[] = [];
+  isDark: boolean = false;
 
   constructor(private treeService: TreeService) { }
 
   ngOnInit(): void { 
+
+    this.items = [
+      {
+        label: 'New', 
+        icon: 'pi pi-fw pi-plus',
+        items: [
+            {label: 'Document',
+            icon: 'pi pi-file',
+            command: (event) => this.inputFiles('document')
+            },
+            {label: 'Picture',
+            icon: 'pi pi-image',
+            command: (event) => this.inputFiles('picture')
+          },
+            {label: 'Graphic',
+            icon: 'pi pi-chart-line',
+            command: (event) => this.inputFiles('graphic')
+          }
+        ]
+      },
+      {
+          label: 'Edit',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+              {label: 'Delete', icon: 'pi pi-fw pi-trash',
+              command: (event) => this.deleteFiles()
+              }              
+          ]
+      }
+  ];
+
+    if (localStorage.getItem('theme') === 'isDark') {
+      this.isDark = true; 
+      this.treeService.changeTheme(this.isDark);          
+    }
  
     if (this.treeService.getDataFromLocalStorage()) {
       this.files =this.treeService.getDataFromLocalStorage();
     }
-    else this.treeService.getData().subscribe((data) => this.files = data as TreeNode[]);   
+    else this.treeService.getData().subscribe((data) => this.files = data as TreeNode[]); 
     
-    this.selectedFile = this.files[0];
-  }  
+  } 
+  
+  inputFiles(type: string) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    if (type === 'document') input.accept = '.txt';
+    else input.accept = 'image/jpeg, image/png';
+    input.click();
+    input.addEventListener("change", ($event) => this.uploadFiles($event, type), false);
+  }
 
-  async uploadFiles(event: any) {
+  async uploadFiles(event: any, type: string) {
     const files = event.target.files;
     for (let i = 0; i < files.length; i++) {
 
@@ -43,33 +86,29 @@ export class TreeSelectionComponent implements OnInit {
         icon: '',
         data: ''          
       }      
-      file.data = await this.treeService.readFileAsync(files[i], this.type);     
+      file.data = await this.treeService.readFileAsync(files[i], type);     
       file.label = files[i].name;   
-      if (this.type === '.txt') {file.icon = 'pi pi-file';}          
-      else {file.icon = 'pi pi-image';}
-      
-      this.selectedFile.children?.push(file);
-      this.selectedFile.parent?.children?.push(file);     
+      if (type === 'document') {
+        file.icon = 'pi pi-file';
+        this.files[0].children?.push(file);
+      }          
+      else if (type === 'picture') {
+        file.icon = 'pi pi-image';
+        this.files[1].children?.push(file);
+      }
+      else {
+        file.icon = 'pi pi-chart-line';
+        this.files[2].children?.push(file);
+      }
+               
     }
     
     this.treeService.setDataToLocalStorage(this.files);    
   }  
 
   selectFiles() {
-    if (this.selectedFile.label === 'Documents' || this.selectedFile.icon === 'pi pi-file') {
-      this.type = '.txt';
-      
-    }
-    else if (this.selectedFile.label === 'Pictures' || this.selectedFile.icon === 'pi pi-image') {
-      this.type = 'image/jpeg, image/png';
-      
-    }
-    else if (this.selectedFile.label === 'Graphics' || this.selectedFile.icon === 'pi pi-image') {
-      this.type = 'image/jpeg, image/png';
-      
-    }       
-
-    if (this.selectedFile.icon === 'pi pi-image') {
+   
+    if (this.selectedFile.icon === 'pi pi-image' || this.selectedFile.icon === 'pi pi-chart-line') {
       this.imageType = true;      
       this.imageUrl = this.selectedFile.data;
 
@@ -95,5 +134,12 @@ export class TreeSelectionComponent implements OnInit {
       this.treeService.setDataToLocalStorage(this.files);         
     
   }
+
+  onChange() {
+
+    this.isDark = !this.isDark;
+    localStorage.setItem('theme', this.treeService.changeTheme(this.isDark));    
+  }
+
    
 }
